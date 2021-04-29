@@ -8,20 +8,28 @@ router.get('/', async (req,res,next) => {
   res.send('<h1>Hey</h1>');
 })
 
-router.post('/', async (req,res,next)=>{
+router.post('/', async (req, res, next)=>{
+  // res.json(req.body);
+  const title = req.body.title;
+  const slug = req.body.slug;
+  const content = req.body.content;
+  const status = req.body.status;
+
   try{
-    const newPost = await Page.create({
-      title: req.body.title,
-      slug: req.body.slug,
-      content: req.body.content,
-      status: req.body.status
-    });
+    console.log(req.body)
+    // const newPost = await Page.create({
+    //   title: title,
+    //   slug: slug,
+    //   content: content,
+    //   status: status
+    // });
+    res.redirect('/');
   }catch(error){
     next(error);
   }
 })
 
-router.get('/add', async (req,res,next)=>{
+router.get('/add', async (req, res, next)=>{
   res.send(addPage())
 })
 
